@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alijon Nodirov · data engineer</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f6faff;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(180, 210, 245, 0.12) 0%, transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(160, 200, 250, 0.1) 0%, transparent 35%),
+        linear-gradient(rgba(190, 220, 250, 0.08) 0.5px, transparent 0.5px),
+        linear-gradient(to right, rgba(190, 220, 250, 0.08) 0.5px, transparent 0.5px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      font-family: "Inter", sans-serif;
+      color: #122b3f;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.8rem;
+      position: relative;
+    }
+
+    #dataCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    .portfolio {
+      max-width: 1340px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 56px;
+      box-shadow: 
+        0 35px 70px -25px rgba(12, 45, 80, 0.1),
+        0 10px 30px rgba(0, 20, 50, 0.03),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+      padding: 3rem 3.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      position: relative;
+      z-index: 10;
+      transition: box-shadow 0.3s;
+      text-align: center;
+    }
+
+    .timeline-item, .project-creative, .skill-visual, .flow-diagram, .footer-creative, .contact-links {
+      text-align: left;
+    }
+
+    h1, h2, h3 {
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: 5.2rem;
+      font-weight: 420;
+      line-height: 1.05;
+      color: #07243a;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.5rem;
+      text-align: center;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+
+    .creative-title {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin: 2.8rem 0 1.5rem;
+      color: #163e5c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: "Inter", sans-serif;
+      border-bottom: 2px solid rgba(110, 165, 210, 0.25);
+      padding-bottom: 0.85rem;
+    }
+    h2 i {
+      color: #2a72a0;
+      font-size: 1.9rem;
+    }
+
+    .mono {
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    .pipeline-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+
+    .live-badge {
+      background: rgba(220, 240, 255, 0.7);
+      backdrop-filter: blur(4px);
+      padding: 0.4rem 1.6rem;
+      border-radius: 100px;
+      border: 1px solid rgba(160, 200, 240, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .pulse {
+      width: 12px;
+      height: 12px;
+      background: #1f9a7a;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #1f9a7a;
+      animation: pulse-anim 2s infinite;
+    }
+
+    @keyframes pulse-anim {
+      0% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(1.3); }
+      100% { opacity: 0.8; transform: scale(1); }
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      color: #1c5380;
+      margin: 0.8rem 0 1.5rem;
+      font-weight: 360;
+      display: inline-block;
+      background: rgba(230, 245, 255, 0.5);
+      padding: 0.6rem 2.2rem;
+      border-radius: 60px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(180, 210, 240, 0.4);
+    }
+
+    .metrics-dashboard {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 2rem 0 2.8rem;
+      justify-content: center;
+    }
+    .metric-tile {
+      background: rgba(245, 250, 255, 0.7);
+      backdrop-filter: blur(5px);
+      padding: 1.1rem 2.2rem;
+      border-radius: 48px;
+      border: 1px solid #cde0f2;
+      box-shadow: 0 8px 18px rgba(0, 30, 60, 0.02);
+      transition: transform 0.15s;
+    }
+    .metric-tile:hover {
+      transform: scale(1.02);
+      background: rgba(255, 255, 255, 0.8);
+    }
+    .metric-value {
+      font-size: 2.9rem;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 370;
+      color: #0e3d5e;
+    }
+
+    .skill-visual {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.2rem 2.8rem;
+      margin: 1.8rem 0;
+      justify-content: center;
+    }
+    .skill-ring {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .ring-label {
+      margin-top: 8px;
+      font-weight: 460;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.8rem;
+    }
+    canvas.ringCanvas {
+      width: 72px;
+      height: 72px;
+    }
+
+    .timeline {
+      margin-top: 1rem;
+      text-align: left;
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 2rem;
+      margin-bottom: 2.2rem;
+      align-items: start;
+    }
+    .timeline-date {
+      font-family: "JetBrains Mono", monospace;
+      background: #e2effb;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      text-align: center;
+      font-size: 0.85rem;
+      border: 1px solid #bed9f2;
+      backdrop-filter: blur(4px);
+      font-weight: 500;
+    }
+    .timeline-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.25rem;
+    }
+    .coursework-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .course-tag {
+      background: rgba(220, 240, 255, 0.6);
+      backdrop-filter: blur(4px);
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.7rem;
+      color: #1a5780;
+      border: 1px solid #b8d4ee;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 1.5rem 0;
+    }
+    .project-creative {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(10px);
+      padding: 2rem 1.8rem;
+      border-radius: 38px;
+      border: 1px solid #d4e8f7;
+      transition: all 0.3s;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-creative:hover {
+      background: white;
+      border-color: #a2c6e6;
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px rgba(20, 70, 110, 0.08);
+    }
+    .project-icon-lg {
+      font-size: 2.4rem;
+      color: #1f6290;
+      margin-bottom: 1.4rem;
+    }
+    .project-link {
+      margin-top: auto;
+      padding-top: 1rem;
+      font-size: 0.85rem;
+    }
+    .project-link a {
+      color: #2a72a0;
+      text-decoration: none;
+      border-bottom: 1px dashed #8bb5d9;
+      transition: border-color 0.2s;
+    }
+    .project-link a:hover {
+      border-bottom-color: #2a72a0;
+    }
+
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background: rgba(235, 247, 255, 0.6);
+      backdrop-filter: blur(6px);
+      border-radius: 100px;
+      padding: 1.5rem 1.8rem;
+      margin: 2.5rem 0 1.2rem;
+      border: 1px solid #c2daf0;
+      text-align: center;
+    }
+    .flow-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .flow-icon {
+      background: white;
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      border: 1px solid #b5d0ea;
+      margin-bottom: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    }
+
+    /* Certificate Section */
+    .certificate-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin: 1.5rem 0 1rem;
+    }
+    .certificate-card {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      padding: 1.8rem 1.2rem;
+      border-radius: 24px;
+      border: 2px solid;
+      border-image-slice: 1;
+      border-image-source: linear-gradient(135deg, #a0c8e8, #6da5d0, #3d82b0);
+      box-shadow: 0 8px 20px rgba(0, 30, 60, 0.04);
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      text-align: center;
+    }
+    .certificate-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #5a9bc7, #2e78a3, #5a9bc7, transparent);
+      z-index: 2;
+    }
+    .certificate-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      background: rgba(255, 255, 255, 0.8);
+      border-color: #7eb3da;
+      box-shadow: 0 20px 35px -12px rgba(30, 80, 120, 0.15);
+    }
+    .cert-icon-large {
+      font-size: 3.2rem;
+      color: #d35400;
+      margin-bottom: 1rem;
+    }
+    .cert-title {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #163e5c;
+      margin-bottom: 0.3rem;
+    }
+    .cert-issuer {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.7rem;
+      color: #4a7ea3;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.8rem;
+    }
+    .cert-hint {
+      font-size: 0.65rem;
+      color: #688aa8;
+      margin-top: 0.5rem;
+      opacity: 0.8;
+    }
+
+    /* Modal */
+    .cert-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 25, 45, 0.95);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+    .cert-modal-content {
+      background: white;
+      border-radius: 24px;
+      padding: 1rem;
+      max-width: 900px;
+      width: 100%;
+      height: 80vh;
+      position: relative;
+      border: 2px solid rgba(110, 165, 210, 0.3);
+    }
+    .cert-modal-close {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 45px;
+      height: 45px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #163e5c;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: 2px solid #a0c8e8;
+      transition: all 0.2s;
+    }
+    .cert-modal-close:hover {
+      transform: scale(1.1);
+      background: #f0f7ff;
+    }
+    .cert-modal-embed {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 16px;
+    }
+
+    .footer-creative {
+      margin-top: 2.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      border-top: 1.5px solid #cde2f5;
+      padding-top: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 2.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .tech-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1.5rem;
+    }
+    .tech-tag {
+      background: transparent;
+      border: 1px solid #bed6ec;
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.75rem;
+      color: #1e5780;
+      transition: 0.1s;
+    }
+    .tech-tag:hover {
+      background: #e3f0fa;
+    }
+
+    @media (max-width: 900px) {
+      .certificate-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 800px) {
+      body { padding: 0.8rem; }
+      .portfolio { padding: 2rem 1.5rem; }
+      h1 { font-size: 3.8rem; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .project-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 500px) {
+      .certificate-grid { grid-template-columns: 1fr; }
+    }
+
+    #typewriter {
+      font-family: "JetBrains Mono", monospace;
+    }
+    .cursor {
+      background: #2d7fb0;
+      width: 3px;
+      height: 1.5rem;
+      display: inline-block;
+      margin-left: 8px;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .about-wrapper {
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="dataCanvas"></canvas>
+
+<div class="portfolio">
+  
+  <!-- HEADER -->
+  <div class="pipeline-header">
+    <div class="live-badge">
+      <span class="pulse"></span>
+      <span class="mono">PIPELINE · ACTIVE · v2.8</span>
+      <i class="fas fa-arrow-right" style="margin-left: 8px; opacity: 0.6;"></i>
+    </div>
+    <div style="font-family: 'JetBrains Mono'; color: #2a628b;">
+      <i class="far fa-clock"></i> Fairfax, VA · open to work
+    </div>
+  </div>
+
+  <div class="creative-title">
+    <h1>Alijon Nodirov</h1>
+    <span style="font-size: 2.4rem; font-weight: 200; color: #4579a3;"><i class="fas fa-code-branch"></i></span>
+  </div>
+
+  <div class="tagline">
+    <span id="typewriter"></span><span class="cursor"></span>
+  </div>
+
+  <!-- Metrics dashboard -->
+  <div class="metrics-dashboard">
+    <div class="metric-tile"><span class="metric-value">4+</span> <span class="mono">years finance</span></div>
+    <div class="metric-tile"><span class="metric-value">3+</span> <span class="mono">production pipelines</span></div>
+    <div class="metric-tile"><span class="metric-value">M.S.</span> <span class="mono">Data Mgmt & Analytics</span></div>
+  </div>
+
+  <!-- 2-col: ABOUT + skills -->
+  <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 2.8rem;" class="about-wrapper">
+    <div>
+      <h2 style="justify-content: flex-start;"><i class="fas fa-user-astronaut"></i> ABOUT</h2>
+      <p style="font-size: 1.05rem; color: #163e58; margin-bottom: 1.5rem; line-height: 1.65;">
+        I am a passionate Data Engineer with a background in financial services, specializing in building production-level ETL/ELT pipelines and scalable data foundations. After 4 years managing loan portfolios and credit data at a microfinance institution, I transitioned into data engineering following my Master's in Data Management & Analytics. Experienced with Databricks, Apache Airflow, Docker, Power BI, Azure and Google Cloud Services. Looking forward to helping you solve data infrastructure problems.
+      </p>
+      <div style="margin-top: 1rem; display: flex; gap: 20px; color: #29618a; flex-wrap: wrap;">
+        <span><i class="fas fa-map-pin"></i> Fairfax, VA</span>
+        <span><i class="fas fa-phone-alt"></i> (202) 760-6866</span>
+        <span><i class="far fa-envelope"></i> alijonve@gmail.com</span>
+      </div>
+    </div>
+    <div>
+      <h2 style="justify-content: flex-start;"><i class="fas fa-microchip"></i> CORE STACK</h2>
+      <div class="skill-visual">
+        <div class="skill-ring"><canvas class="ringCanvas" data-percent="92" width="72" height="72"></canvas><span class="ring-label mono">Python</span></div>
+        <div class="skill-ring"><canvas class="ringCanvas" data-percent="94" width="72" height="72"></canvas><span class="ring-label mono">SQL</span></div>
+        <div class="skill-ring"><canvas class="ringCanvas" data-percent="86" width="72" height="72"></canvas><span class="ring-label mono">PySpark</span></div>
+        <div class="skill-ring"><canvas class="ringCanvas" data-percent="82" width="72" height="72"></canvas><span class="ring-label mono">Airflow</span></div>
+      </div>
+      <div class="tech-cloud">
+        <span class="tech-tag">Databricks</span><span class="tech-tag">Snowflake</span><span class="tech-tag">Docker</span>
+        <span class="tech-tag">GCP</span><span class="tech-tag">Azure</span><span class="tech-tag">Power BI</span>
+        <span class="tech-tag">Delta Tables</span><span class="tech-tag">Git</span><span class="tech-tag">Apache Kafka</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pipeline flow diagram -->
+  <div class="flow-diagram">
+    <div class="flow-node"><span class="flow-icon"><i class="fas fa-cloud-upload-alt"></i></span><span class="mono">INGEST</span></div>
+    <i class="fas fa-chevron-right" style="color:#5b8eb0; font-size: 1.3rem;"></i>
+    <div class="flow-node"><span class="flow-icon"><i class="fas fa-filter"></i></span><span class="mono">CLEANSE</span></div>
+    <i class="fas fa-chevron-right" style="color:#5b8eb0; font-size: 1.3rem;"></i>
+    <div class="flow-node"><span class="flow-icon"><i class="fas fa-layer-group"></i></span><span class="mono">MEDALLION</span></div>
+    <i class="fas fa-chevron-right" style="color:#5b8eb0; font-size: 1.3rem;"></i>
+    <div class="flow-node"><span class="flow-icon"><i class="fas fa-chart-bar"></i></span><span class="mono">INSIGHTS</span></div>
+    <i class="fas fa-chevron-right" style="color:#5b8eb0; font-size: 1.3rem;"></i>
+    <div class="flow-node"><span class="flow-icon"><i class="fas fa-bell"></i></span><span class="mono">AUTOMATE</span></div>
+  </div>
+
+  <!-- Experience + Education Timeline -->
+  <h2><i class="fas fa-briefcase"></i> EXPERIENCE & EDUCATION</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">2023 – 2025</div>
+      <div class="timeline-content">
+        <h3>M.S. Information Technology · Data Management & Analytics</h3>
+        <div>Washington University of Science and Technology, Alexandria, VA</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2019 – 2023</div>
+      <div class="timeline-content">
+        <h3>Loan Officer · Oxus Microfinance Institution</h3>
+        <div>Kulob, Tajikistan — Managed loan portfolio, maintained zero-default record, mentored interns, built Excel‑based performance reports.</div>
+      </div>
+    </div>
+     <div class="timeline-item">
+      <div class="timeline-date">2022 – 2022</div>
+      <div class="timeline-content">
+        <h3>Graduate Coursework · Global Development & Entrepreneurship</h3>
+        <div>Ca' Foscari University of Venice, Italy — Completed with transfer credits</div>
+        <div class="coursework-tags">
+          <span class="course-tag"><i class="fas fa-chart-line"></i> Economics and Econometrics of International Finance</span>
+          <span class="course-tag"><i class="fas fa-calculator"></i> Advanced International Accounting</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2015 – 2018</div>
+      <div class="timeline-content">
+        <h3>BBA & Foundation · Limkokwing University</h3>
+        <div>Cyberjaya, Malaysia — Bachelor of Business Administration</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projects with GitHub links -->
+  <h2><i class="fas fa-diagram-project"></i> SIGNATURE PIPELINES</h2>
+  <div class="project-grid">
+    <div class="project-creative">
+      <div class="project-icon-lg"><i class="fas fa-truck"></i></div>
+      <h3>Logistics Data Platform</h3>
+      <p style="margin-bottom: 0.5rem;">Modern data foundation on Snowflake with Medallion Architecture. Bronze/Silver/Gold incremental processing, DQ monitoring, change tracking.</p>
+      <div class="mono" style="color:#1f6290; font-size: 0.8rem;">Snowflake · Airflow · GCS · Parquet</div>
+      <div class="project-link">
+        <a href="https://github.com/alijonve-ux/atlasflow-ELT-pipeline" target="_blank"><i class="fab fa-github"></i> atlasflow-ELT-pipeline →</a>
+      </div>
+    </div>
+    <div class="project-creative">
+      <div class="project-icon-lg"><i class="fas fa-coins"></i></div>
+      <h3>Microfinance ETL</h3>
+      <p style="margin-bottom: 0.5rem;">Automated daily payment reporting. Medallion layers with Databricks, Delta tables, Faker simulation, and email delivery.</p>
+      <div class="mono" style="color:#1f6290; font-size: 0.8rem;">Databricks · PySpark · Delta · Jobs</div>
+      <div class="project-link">
+        <a href="https://github.com/alijonve-ux/microfinance-etl-pipeline" target="_blank"><i class="fab fa-github"></i> microfinance-etl-pipeline →</a>
+      </div>
+    </div>
+    <div class="project-creative">
+      <div class="project-icon-lg"><i class="fas fa-gas-pump"></i></div>
+      <h3>NurOil Fuel Analytics</h3>
+      <p style="margin-bottom: 0.5rem;">End‑to‑end PySpark pipeline: ingestion, cleaning, star schema, export for Power BI. Custom Python runner, SQLite staging.</p>
+      <div class="mono" style="color:#1f6290; font-size: 0.8rem;">PySpark · SQLite · Power BI · Parquet</div>
+      <div class="project-link">
+        <a href="https://github.com/alijonve-ux/nuroil-fuel-etl" target="_blank"><i class="fab fa-github"></i> nuroil-fuel-etl →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATES SECTION -->
+  <h2><i class="fas fa-certificate"></i> CERTIFICATIONS</h2>
+  
+  <div class="certificate-grid">
+    <div class="certificate-card" onclick="showCertificate('https://github.com/alijonve-ux/data-portfolio/blob/main/databricks_dataengineering.pdf?raw=true')">
+      <div class="cert-icon-large"><i class="fas fa-file-pdf"></i></div>
+      <div class="cert-title">Databricks Data Engineering</div>
+      <div class="cert-issuer">Databricks</div>
+      <div class="cert-hint"><i class="fas fa-expand"></i> Click to view</div>
+    </div>
+    <div class="certificate-card" onclick="showCertificate('https://github.com/alijonve-ux/data-portfolio/blob/main/databricks_fundamentals.pdf?raw=true')">
+      <div class="cert-icon-large"><i class="fas fa-file-pdf"></i></div>
+      <div class="cert-title">Databricks Fundamentals</div>
+      <div class="cert-issuer">Databricks</div>
+      <div class="cert-hint"><i class="fas fa-expand"></i> Click to view</div>
+    </div>
+    <div class="certificate-card" onclick="showCertificate('https://github.com/alijonve-ux/data-portfolio/blob/main/fundamentals_of_marketing.pdf?raw=true')">
+      <div class="cert-icon-large"><i class="fas fa-file-pdf"></i></div>
+      <div class="cert-title">Fundamentals of Marketing</div>
+      <div class="cert-issuer">Certification</div>
+      <div class="cert-hint"><i class="fas fa-expand"></i> Click to view</div>
+    </div>
+    <div class="certificate-card" onclick="showCertificate('https://github.com/alijonve-ux/data-portfolio/blob/main/president_of_university.pdf?raw=true')">
+      <div class="cert-icon-large"><i class="fas fa-file-pdf"></i></div>
+      <div class="cert-title">President's Recognition</div>
+      <div class="cert-issuer">University Award</div>
+      <div class="cert-hint"><i class="fas fa-expand"></i> Click to view</div>
+    </div>
+  </div>
+
+  <!-- Certificate Modal -->
+  <div id="certModal" class="cert-modal" onclick="closeModal(event)">
+    <div class="cert-modal-content" onclick="event.stopPropagation()">
+      <div class="cert-modal-close" onclick="closeModal()">&times;</div>
+      <embed id="certEmbed" class="cert-modal-embed" type="application/pdf">
+    </div>
+  </div>
+
+  <!-- GitHub & contact -->
+  <div class="contact-links" style="margin: 2.5rem 0 1rem;">
+    <div><i class="fab fa-github"></i> <a href="https://github.com/alijonve-ux" target="_blank" style="text-decoration:none; color:#1d4b70;" class="mono">github.com/alijonve-ux</a></div>
+    <div><i class="fab fa-linkedin"></i> <a href="#" style="text-decoration:none; color:#1d4b70;" class="mono">linkedin.com/in/alijon-nodirov</a></div>
+    <div><i class="fas fa-envelope"></i> <span class="mono">alijonve@gmail.com</span></div>
+  </div>
+
+  <div class="footer-creative" style="justify-content: center; gap: 2rem;">
+    <div style="display: flex; gap: 2.2rem;">
+      <a href="mailto:alijonve@gmail.com" style="text-decoration:none; color:#1d4b70;"><i class="far fa-envelope"></i> alijonve@gmail.com</a>
+      <a href="https://github.com/alijonve-ux" target="_blank" style="text-decoration:none; color:#1d4b70;"><i class="fab fa-github"></i> /alijonve-ux</a>
+      <a href="#" style="text-decoration:none; color:#1d4b70;"><i class="fab fa-linkedin"></i> /in/alijon-nodirov</a>
+    </div>
+    <div class="mono" style="color:#38658b;"><i class="far fa-file-pdf"></i> resume.pdf</div>
+  </div>
+  <div style="margin-top: 1.2rem; font-size:0.8rem; display:flex; justify-content: center; gap: 2.5rem; color:#46799e;">
+    <span><i class="far fa-check-circle"></i> idempotent by design</span>
+    <span>v2.8 · 2025 · Fairfax, VA</span>
+  </div>
+</div>
+
+<script>
+  function showCertificate(pdfUrl) {
+    document.getElementById('certEmbed').src = pdfUrl;
+    document.getElementById('certModal').style.display = 'flex';
+  }
+  
+  function closeModal(event) {
+    if (!event || event.target === document.getElementById('certModal')) {
+      document.getElementById('certModal').style.display = 'none';
+      document.getElementById('certEmbed').src = '';
+    }
+  }
+
+  (function(){
+    "use strict";
+
+    const phrases = [
+      "ETL/ELT · Medallion · Automation",
+      "from loan officer to data engineer",
+      "building reliable data foundations",
+      "Snowflake · Databricks · Airflow"
+    ];
+    let phraseIdx = 0, charIdx = 0, isDeleting = false;
+    const el = document.getElementById('typewriter');
+    function typeEffect() {
+      const full = phrases[phraseIdx];
+      if (isDeleting) {
+        el.textContent = full.substring(0, charIdx-1);
+        charIdx--;
+      } else {
+        el.textContent = full.substring(0, charIdx+1);
+        charIdx++;
+      }
+      if (!isDeleting && charIdx === full.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 1800);
+        return;
+      }
+      if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+        setTimeout(typeEffect, 300);
+        return;
+      }
+      setTimeout(typeEffect, isDeleting ? 45 : 90);
+    }
+    typeEffect();
+
+    const canvas = document.getElementById('dataCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+    
+    function initCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      
+      const count = Math.floor((width * height) / 10000);
+      particles = [];
+      for (let i=0; i<count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.1) * 0.5 + 0.2,
+          size: Math.random() * 2.5 + 1,
+          opacity: Math.random() * 0.25 + 0.15
+        });
+      }
+    }
+    
+    function drawParticles() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#8bb5d9';
+      
+      for (let p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+        
+        ctx.globalAlpha = p.opacity * 0.7;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+        ctx.fill();
+        
+        for (let q of particles) {
+          const dx = p.x - q.x;
+          const dy = p.y - q.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 50) {
+            ctx.globalAlpha = 0.07 * (1 - dist/50);
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = '#5e96c2';
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(drawParticles);
+    }
+    
+    window.addEventListener('resize', initCanvas);
+    initCanvas();
+    drawParticles();
+
+    function drawRing(canvas, percent) {
+      const ctx = canvas.getContext('2d');
+      const w = 72, h = 72;
+      canvas.width = w; canvas.height = h;
+      const centerX = w/2, centerY = h/2;
+      const radius = 29;
+      const startAngle = -0.5 * Math.PI;
+      const endAngle = startAngle + (2 * Math.PI * percent/100);
+      
+      ctx.clearRect(0,0,w,h);
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, 2*Math.PI);
+      ctx.strokeStyle = '#d2e3f5';
+      ctx.lineWidth = 5;
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+      ctx.strokeStyle = '#1e6b9b';
+      ctx.lineWidth = 5;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+      
+      ctx.font = '500 13px "JetBrains Mono", monospace';
+      ctx.fillStyle = '#1e4b6e';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(percent+'%', centerX, centerY);
+    }
+    
+    document.querySelectorAll('.ringCanvas').forEach(c => {
+      const percent = c.getAttribute('data-percent') || 90;
+      drawRing(c, percent);
+    });
+  })();
+</script>
+</body>
+</html>
