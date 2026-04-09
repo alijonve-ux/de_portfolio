@@ -333,174 +333,106 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.02);
     }
 
-    /* Certificate Section */
-    .certificate-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin: 1.5rem 0 1rem;
-    }
-    .certificate-card {
-      background: rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(8px);
-      padding: 1.8rem 1.2rem;
-      border-radius: 24px;
-      border: 2px solid;
-      border-image-slice: 1;
-      border-image-source: linear-gradient(135deg, #a0c8e8, #6da5d0, #3d82b0);
-      box-shadow: 0 8px 20px rgba(0, 30, 60, 0.04);
-      transition: all 0.25s;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      text-align: center;
-    }
-    .certificate-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #5a9bc7, #2e78a3, #5a9bc7, transparent);
-      z-index: 2;
-    }
-    .certificate-card:hover {
-      transform: translateY(-6px) scale(1.02);
-      background: rgba(255, 255, 255, 0.8);
-      border-color: #7eb3da;
-      box-shadow: 0 20px 35px -12px rgba(30, 80, 120, 0.15);
-    }
-    .cert-icon-large {
-      font-size: 3.2rem;
-      color: #d35400;
-      margin-bottom: 1rem;
-    }
-    .cert-title {
-      font-weight: 600;
-      font-size: 1rem;
-      color: #163e5c;
-      margin-bottom: 0.3rem;
-    }
-    .cert-issuer {
-      font-family: "JetBrains Mono", monospace;
-      font-size: 0.7rem;
-      color: #4a7ea3;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.8rem;
-    }
-    .cert-hint {
-      font-size: 0.65rem;
-      color: #688aa8;
-      margin-top: 0.5rem;
-      opacity: 0.8;
-    }
+    <!-- CERTIFICATES SECTION - DISPLAYED DIRECTLY -->
+<h2><i class="fas fa-certificate"></i> CERTIFICATIONS</h2>
 
-    /* Modal */
-    .cert-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(5, 25, 45, 0.95);
-      backdrop-filter: blur(12px);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-    }
-    .cert-modal-content {
-      background: white;
-      border-radius: 24px;
-      padding: 1rem;
-      max-width: 900px;
-      width: 100%;
-      height: 80vh;
-      position: relative;
-      border: 2px solid rgba(110, 165, 210, 0.3);
-    }
-    .cert-modal-close {
-      position: absolute;
-      top: -20px;
-      right: -20px;
-      width: 45px;
-      height: 45px;
-      background: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: #163e5c;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      border: 2px solid #a0c8e8;
-      transition: all 0.2s;
-    }
-    .cert-modal-close:hover {
-      transform: scale(1.1);
-      background: #f0f7ff;
-    }
-    .cert-modal-embed {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 16px;
-    }
+<style>
+  .certificate-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin: 1.5rem 0 1rem;
+  }
+  .certificate-card {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    padding: 1.2rem;
+    border-radius: 24px;
+    border: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(135deg, #a0c8e8, #6da5d0, #3d82b0);
+    box-shadow: 0 8px 20px rgba(0, 30, 60, 0.04);
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .certificate-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #5a9bc7, #2e78a3, #5a9bc7, transparent);
+    z-index: 2;
+  }
+  .certificate-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    background: rgba(255, 255, 255, 0.8);
+    border-color: #7eb3da;
+    box-shadow: 0 20px 35px -12px rgba(30, 80, 120, 0.15);
+  }
+  .cert-image {
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: white;
+    padding: 0.5rem;
+    margin-bottom: 0.8rem;
+  }
+  .cert-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #163e5c;
+    margin-bottom: 0.2rem;
+    text-align: center;
+  }
+  .cert-issuer {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.65rem;
+    color: #4a7ea3;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+  @media (max-width: 900px) {
+    .certificate-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 500px) {
+    .certificate-grid { grid-template-columns: 1fr; }
+  }
+</style>
 
-    .footer-creative {
-      margin-top: 2.8rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      border-top: 1.5px solid #cde2f5;
-      padding-top: 2rem;
-    }
+<div class="certificate-grid">
+  <!-- Databricks Data Engineering -->
+  <div class="certificate-card">
+    <img class="cert-image" src="https://raw.githubusercontent.com/alijonve-ux/de_portfolio/main/databricks_dataengineering.jpg" alt="Databricks Data Engineering Certificate" loading="lazy">
+    <div class="cert-title">Databricks Data Engineering</div>
+    <div class="cert-issuer">Databricks</div>
+  </div>
 
-    .contact-links {
-      display: flex;
-      gap: 2.2rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+  <!-- Databricks Fundamentals -->
+  <div class="certificate-card">
+    <img class="cert-image" src="https://raw.githubusercontent.com/alijonve-ux/de_portfolio/main/databricks_fundamentals.jpg" alt="Databricks Fundamentals Certificate" loading="lazy">
+    <div class="cert-title">Databricks Fundamentals</div>
+    <div class="cert-issuer">Databricks</div>
+  </div>
 
-    .tech-cloud {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 1.5rem;
-    }
-    .tech-tag {
-      background: transparent;
-      border: 1px solid #bed6ec;
-      padding: 0.3rem 1.2rem;
-      border-radius: 40px;
-      font-family: "JetBrains Mono", monospace;
-      font-size: 0.75rem;
-      color: #1e5780;
-      transition: 0.1s;
-    }
-    .tech-tag:hover {
-      background: #e3f0fa;
-    }
+  <!-- Fundamentals of Marketing -->
+  <div class="certificate-card">
+    <img class="cert-image" src="https://raw.githubusercontent.com/alijonve-ux/de_portfolio/main/fundamentals_of_marketing.jpg" alt="Fundamentals of Marketing Certificate" loading="lazy">
+    <div class="cert-title">Fundamentals of Marketing</div>
+    <div class="cert-issuer">Certification</div>
+  </div>
 
-    @media (max-width: 900px) {
-      .certificate-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 800px) {
-      body { padding: 0.8rem; }
-      .portfolio { padding: 2rem 1.5rem; }
-      h1 { font-size: 3.8rem; }
-      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .project-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 500px) {
-      .certificate-grid { grid-template-columns: 1fr; }
-    }
+  <!-- President's Recognition -->
+  <div class="certificate-card">
+    <img class="cert-image" src="https://raw.githubusercontent.com/alijonve-ux/de_portfolio/main/president_of_university.jpg" alt="President's Recognition" loading="lazy">
+    <div class="cert-title">President's Recognition</div>
+    <div class="cert-issuer">University Award</div>
+  </div>
+</div>
 
     #typewriter {
       font-family: "JetBrains Mono", monospace;
@@ -695,14 +627,6 @@
     </div>
   </div>
 
-  <!-- Certificate Modal -->
-  <div id="certModal" class="cert-modal" onclick="closeModal(event)">
-    <div class="cert-modal-content" onclick="event.stopPropagation()">
-      <div class="cert-modal-close" onclick="closeModal()">&times;</div>
-      <embed id="certEmbed" class="cert-modal-embed" type="application/pdf">
-    </div>
-  </div>
-
   <!-- GitHub & contact -->
   <div class="contact-links" style="margin: 2.5rem 0 1rem;">
     <div><i class="fab fa-github"></i> <a href="https://github.com/alijonve-ux" target="_blank" style="text-decoration:none; color:#1d4b70;" class="mono">github.com/alijonve-ux</a></div>
@@ -723,19 +647,6 @@
     <span>v2.8 · 2025 · Fairfax, VA</span>
   </div>
 </div>
-
-<script>
-  function showCertificate(pdfUrl) {
-    document.getElementById('certEmbed').src = pdfUrl;
-    document.getElementById('certModal').style.display = 'flex';
-  }
-  
-  function closeModal(event) {
-    if (!event || event.target === document.getElementById('certModal')) {
-      document.getElementById('certModal').style.display = 'none';
-      document.getElementById('certEmbed').src = '';
-    }
-  }
 
   (function(){
     "use strict";
