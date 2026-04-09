@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Alijon Nodirov · Data Engineer</title>
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -431,7 +431,7 @@
       background: #e3f0fa;
     }
 
-    /* Enhanced Responsive Design */
+    /* ⭐ PERFECT MOBILE — Compact, readable, minimal scroll */
     @media (max-width: 1200px) {
       .portfolio { padding: 2.5rem 2rem; }
       h1 { font-size: 4.5rem; }
@@ -447,61 +447,70 @@
     }
 
     @media (max-width: 768px) {
-      body { padding: 0.8rem; }
-      .portfolio { padding: 2rem 1.2rem; border-radius: 32px; }
-      h1 { font-size: 3.5rem; }
-      h2 { font-size: 1.5rem; margin: 2rem 0 1rem; }
-      .pipeline-header { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
-      .live-badge { font-size: 0.75rem; padding: 0.3rem 1rem; }
-      .tagline { font-size: 1rem; padding: 0.5rem 1.5rem; }
-      .metrics-dashboard { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-      .metric-tile { padding: 0.7rem 1.2rem; border-radius: 36px; }
+      body { padding: 0.6rem; }
+      .portfolio { padding: 1.8rem 1.2rem; border-radius: 32px; }
+      h1 { font-size: 3.2rem; }
+      h2 { font-size: 1.4rem; margin: 1.8rem 0 1rem; }
+      h2 i { font-size: 1.4rem; }
+      .pipeline-header { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+      .live-badge { font-size: 0.7rem; padding: 0.25rem 1rem; }
+      .tagline { font-size: 0.9rem; padding: 0.4rem 1.5rem; margin: 0.5rem 0 1.2rem; }
+      .metrics-dashboard { gap: 0.6rem; margin: 1rem 0 1.5rem; }
+      .metric-tile { padding: 0.6rem 1.2rem; border-radius: 36px; }
       .metric-value { font-size: 1.8rem; }
-      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .timeline-date { display: inline-block; width: auto; }
-      .project-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .metric-tile .mono { font-size: 0.6rem; }
+      
+      .about-wrapper { display: flex !important; flex-direction: column !important; gap: 1rem !important; }
+      .about-wrapper p { font-size: 0.9rem; }
+      
+      .timeline-item { grid-template-columns: 1fr; gap: 0.3rem; margin-bottom: 1.2rem; }
+      .timeline-date { display: inline-block; width: auto; font-size: 0.7rem; }
+      .timeline-content h3 { font-size: 1.1rem; }
+      .timeline-content div { font-size: 0.85rem; }
+      
+      .project-grid { grid-template-columns: 1fr; gap: 1.2rem; }
       .project-creative { padding: 1.5rem; }
-      .flow-diagram { flex-wrap: wrap; gap: 1rem; padding: 1.2rem 1rem; border-radius: 40px; }
-      .flow-node { min-width: 70px; }
-      .flow-icon { width: 45px; height: 45px; font-size: 1.4rem; }
-      .certificate-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .project-icon-lg { font-size: 2rem; margin-bottom: 0.8rem; }
+      
+      .flow-diagram { flex-wrap: wrap; gap: 0.6rem; padding: 1rem 0.8rem; border-radius: 40px; }
+      .flow-node { min-width: 60px; }
+      .flow-icon { width: 40px; height: 40px; font-size: 1.3rem; }
+      .flow-node .mono { font-size: 0.55rem; }
+      
+      .certificate-grid { grid-template-columns: 1fr; gap: 1rem; }
       .certificate-card { padding: 1rem; }
-      .cert-image { height: 250px; }
-      .skill-visual { gap: 1.5rem; }
-      .skill-ring canvas { width: 60px !important; height: 60px !important; }
-      .tech-cloud { justify-content: center; }
-      .contact-links { flex-direction: column; align-items: center; gap: 1rem; }
-      .footer-creative { flex-direction: column; gap: 1.2rem; text-align: center; }
+      .cert-image { height: 220px; }
+      .cert-title { font-size: 0.8rem; }
+      .cert-issuer { font-size: 0.55rem; }
+      
+      .skill-visual { gap: 1.2rem; }
+      .skill-ring canvas { width: 55px !important; height: 55px !important; }
+      .ring-label { font-size: 0.65rem; }
+      .tech-cloud { justify-content: center; margin-top: 0.8rem; }
+      .tech-tag { font-size: 0.65rem; padding: 0.2rem 0.9rem; }
+      
+      .contact-links { gap: 1.2rem; }
+      .contact-links .mono { font-size: 0.7rem; }
+      .footer-creative { flex-direction: column; gap: 0.8rem; text-align: center; padding-top: 1.2rem; margin-top: 1.5rem; }
       .footer-creative > div { flex-wrap: wrap; justify-content: center; gap: 1rem; }
-      .about-wrapper p { font-size: 0.95rem; }
+      
       .coursework-tags { justify-content: flex-start; }
-      .course-tag { font-size: 0.65rem; }
+      .course-tag { font-size: 0.6rem; padding: 0.15rem 0.8rem; }
     }
 
     @media (max-width: 480px) {
       body { padding: 0.4rem; }
       .portfolio { padding: 1.5rem 1rem; border-radius: 24px; }
-      h1 { font-size: 2.8rem; }
-      .creative-title { gap: 8px; }
-      .creative-title span { font-size: 1.8rem !important; }
-      h2 { font-size: 1.3rem; }
-      h2 i { font-size: 1.4rem; }
-      .live-badge { font-size: 0.65rem; }
-      .tagline { font-size: 0.85rem; }
-      .metric-tile { padding: 0.5rem 1rem; border-radius: 30px; }
+      h1 { font-size: 2.5rem; }
+      .creative-title { gap: 6px; }
+      .creative-title span { font-size: 1.5rem !important; }
+      h2 { font-size: 1.2rem; }
+      .live-badge { font-size: 0.6rem; }
+      .tagline { font-size: 0.8rem; }
+      .metric-tile { padding: 0.5rem 1rem; }
       .metric-value { font-size: 1.5rem; }
-      .metric-tile .mono { font-size: 0.65rem; }
-      .flow-node .mono { font-size: 0.6rem; }
-      .flow-icon { width: 40px; height: 40px; font-size: 1.2rem; }
-      .project-icon-lg { font-size: 2rem; }
-      .project-creative h3 { font-size: 1.2rem; }
-      .project-creative p { font-size: 0.85rem; }
-      .cert-image { height: 200px; }
-      .cert-title { font-size: 0.8rem; }
-      .cert-issuer { font-size: 0.55rem; }
-      .timeline-content h3 { font-size: 1.1rem; }
-      .timeline-content div { font-size: 0.85rem; }
-      .contact-links .mono { font-size: 0.75rem; }
+      .cert-image { height: 180px; }
+      .timeline-content h3 { font-size: 1rem; }
     }
 
     #typewriter {
