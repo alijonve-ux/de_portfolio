@@ -431,40 +431,228 @@
       background: #e3f0fa;
     }
 
-    @media (max-width: 900px) {
-      .certificate-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 800px) {
-      body { padding: 0.8rem; }
-      .portfolio { padding: 2rem 1.5rem; }
-      h1 { font-size: 3.8rem; }
-      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .project-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 500px) {
-      .certificate-grid { grid-template-columns: 1fr; }
-    }
+    /* Enhanced Responsive Design */
+@media (max-width: 1200px) {
+  .portfolio {
+    padding: 2.5rem 2rem;
+  }
+  h1 {
+    font-size: 4.5rem;
+  }
+}
 
-    #typewriter {
-      font-family: "JetBrains Mono", monospace;
-    }
-    .cursor {
-      background: #2d7fb0;
-      width: 3px;
-      height: 1.5rem;
-      display: inline-block;
-      margin-left: 8px;
-      animation: blink 1s infinite;
-    }
-    @keyframes blink { 50% { opacity: 0; } }
+@media (max-width: 992px) {
+  .grid-about {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+  .certificate-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .metrics-dashboard {
+    gap: 1rem;
+  }
+  .metric-tile {
+    padding: 0.8rem 1.5rem;
+  }
+  .metric-value {
+    font-size: 2.2rem;
+  }
+}
 
-    .about-wrapper {
-      text-align: left;
-    }
-  </style>
-</head>
-<body>
+@media (max-width: 768px) {
+  body {
+    padding: 0.8rem;
+  }
+  .portfolio {
+    padding: 2rem 1.2rem;
+    border-radius: 32px;
+  }
+  h1 {
+    font-size: 3.5rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+  }
+  .pipeline-header {
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: flex-start;
+  }
+  .live-badge {
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+  }
+  .tagline {
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+  }
+  .metrics-dashboard {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .metric-tile {
+    padding: 0.7rem 1.2rem;
+    border-radius: 36px;
+  }
+  .metric-value {
+    font-size: 1.8rem;
+  }
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .timeline-date {
+    display: inline-block;
+    width: auto;
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .project-creative {
+    padding: 1.5rem;
+  }
+  .flow-diagram {
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.2rem 1rem;
+    border-radius: 40px;
+  }
+  .flow-node {
+    min-width: 70px;
+  }
+  .flow-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.4rem;
+  }
+  .certificate-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .certificate-card {
+    padding: 1rem;
+  }
+  .cert-image {
+    height: 250px;
+  }
+  .skill-visual {
+    gap: 1.5rem;
+  }
+  .skill-ring canvas {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  .tech-cloud {
+    justify-content: center;
+  }
+  .contact-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .footer-creative {
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: center;
+  }
+  .footer-creative > div {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .about-wrapper p {
+    font-size: 0.95rem;
+  }
+  .coursework-tags {
+    justify-content: flex-start;
+  }
+  .course-tag {
+    font-size: 0.65rem;
+  }
+}
 
+@media (max-width: 480px) {
+  body {
+    padding: 0.4rem;
+  }
+  .portfolio {
+    padding: 1.5rem 1rem;
+    border-radius: 24px;
+  }
+  h1 {
+    font-size: 2.8rem;
+  }
+  .creative-title {
+    gap: 8px;
+  }
+  .creative-title span {
+    font-size: 1.8rem !important;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+  h2 i {
+    font-size: 1.4rem;
+  }
+  .live-badge {
+    font-size: 0.65rem;
+  }
+  .tagline {
+    font-size: 0.85rem;
+  }
+  .metric-tile {
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+  }
+  .metric-value {
+    font-size: 1.5rem;
+  }
+  .metric-tile .mono {
+    font-size: 0.65rem;
+  }
+  .flow-node .mono {
+    font-size: 0.6rem;
+  }
+  .flow-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  .project-icon-lg {
+    font-size: 2rem;
+  }
+  .project-creative h3 {
+    font-size: 1.2rem;
+  }
+  .project-creative p {
+    font-size: 0.85rem;
+  }
+  .cert-image {
+    height: 200px;
+  }
+  .cert-title {
+    font-size: 0.8rem;
+  }
+  .cert-issuer {
+    font-size: 0.55rem;
+  }
+  .timeline-content h3 {
+    font-size: 1.1rem;
+  }
+  .timeline-content div {
+    font-size: 0.85rem;
+  }
+  .contact-links .mono {
+    font-size: 0.75rem;
+  }
+}
 <canvas id="dataCanvas"></canvas>
 
 <div class="portfolio">
